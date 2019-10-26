@@ -1,3 +1,4 @@
+"""memo-analyticsプログラムで発生する独自例外を定義"""
 
 
 class UndefinedMarkError(Exception):
