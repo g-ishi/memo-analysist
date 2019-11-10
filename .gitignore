@@ -1,5 +1,4 @@
+.DS_Store
 src/__pycache__
-src/config.ini
-src/test.txt
-src/todo.txt
-
+src/*.png
+test/*.png

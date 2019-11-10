@@ -14,7 +14,6 @@ class Tabulation(object):
     """
     メモからデータを集計するクラス
     規定のフォーマットで書かれたメモから、以下を集計する
-        ・status,typeごとのタスク数
         ・status,typeごとの合計時間
     用語：
         <status_mark>[<type>]~~(<time>)
@@ -38,7 +37,6 @@ class Tabulation(object):
         self.time_list = []
         # タスクにかかった時間
         self.task_time_list = []
-
 
     def append_status_list(self, one_line):
         """
@@ -241,6 +239,7 @@ class Tabulation(object):
         Exception:
         """
         # TODO: 設定ファイルからフォルダの巡回を行うプログラムの作成
+        # TODO: 対象ファイルはmain.pyで決めて、それを引数で受け取るようにする、        
         with open('test.txt', 'r') as memo_file:
             for _line in memo_file.readlines():
                 self.append_status_list(_line)
@@ -254,6 +253,21 @@ class Tabulation(object):
         type_times = self.calc_type_time(memo_list)
         return status_times, type_times
 
-# if __name__ == '__main__':
-#     t = Tabulation()
-#     print(t.main())
+
+if __name__ == '__main__':
+    t = Tabulation()
+    # print(t.main())
+    with open('test.txt', 'r') as f:
+        for line in f.readlines():
+            t.append_status_list(line)
+            t.append_type_list(line)
+            t.append_time_list(line)
+    print(t.status_list)
+    print(t.type_list)
+    print(t.time_list)
+    print(t.append_task_time_list(t.time_list))
+    print(t.collect_status_list(t.status_list))
+    print(t.collect_type_list(t.type_list))
+    print(t.calc_status_time(t.reconstract_memo()))
+    print(t.calc_type_time(t.reconstract_memo()))
+    print(t.main())
