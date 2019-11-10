@@ -34,6 +34,7 @@ class Analysis(object):
         file_prefix = label_dict.get('file_prefix', '')
         file_name = file_prefix + str(date.today())
 
+        plt.figure()
         plt.bar(left, height)
         plt.xlabel(x_label)
         plt.ylabel(y_label)
@@ -88,54 +89,3 @@ class Analysis(object):
         height_str = [_t.total_seconds() / 60 for _t in height]
 
         self.create_bar_graph(left, height_str, _label_dict)
-
-
-if __name__ == '__main__':
-    t = Tabulation()
-    status_times, type_times = t.main()
-    print(status_times)
-    print(type_times)
-    a = Analysis()
-    a.status_graph(type_times)
-
-    # left = list(status_time.keys())
-    # height = status_time.values()
-    # timedeltaを文字列の配列に変換
-    # height_str = [_timedelta.total_seconds() / 60 for timedelta in height]
-
-    # label_dict = {
-    #     'x_label': 'task status',
-    #     'y_label': 'time spent(minutes)',
-    #     'graph_title': 'Time spent for each task status',
-    # }
-    # a = Analysis()
-    # a.create_bar_graph(left, height_str, label_dict)
-
-    # 秒を60で割って分を出す。デフォルトで変換する関数は用意されていない。
-    # _test = timedelta(seconds=3600)
-    # print(_test.total_seconds() / 60)
-    # print(type(_test.total_seconds()))
-
-    # print(type(list(left)))
-    # print(left)
-    # print(type(height_str))
-    # plt.bar(left, height_str)
-    # plt.title('Time spent for each task status')
-    # plt.xlabel('task status')
-    # plt.ylabel('time spent(minutes)')
-    # plt.grid(True)
-    # plt.savefig('test.png')
-    # 表示だけ非同期でやらせて、プログラムとしては終了してもいいかも。
-    # plt.show()
-
-    # sample_data = {'●': 6, '○': 1}
-    # plt.plot(['●', '○'], [6, 1])
-    # plt.ylabel('task numbers')
-    # plt.show()
-    # objects = ['●', '○']
-    # values = [6, 1]
-    # plt.bar(objects, values)
-    # plt.xticks(objects, values)
-    # plt.ylabel('task numbers')
-    # plt.title('task status')
-    # plt.show()
